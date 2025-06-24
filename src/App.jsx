@@ -1,28 +1,21 @@
 import {BrowserRouter, Routes, Route, Link} from "react-router-dom";
+import AboutPage from "./pages/About"
+import HomePage from "./pages/Home"
+import Header from "./components/Header"
+import Footer from "./components/Footer.jsx";
 
 function App() {
   return (
     <BrowserRouter>
-      <Link to="/">Home</Link>
-      <Link to="/about">About</Link>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-      </Routes>
+      <div className="min-h-dvh flex flex-col">
+        <Header/>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/about" element={<AboutPage />} />
+        </Routes>
+        <Footer/>
+      </div>
     </BrowserRouter>
   )
 }
-
-function Home(){
-  return (
-    <h1>Yo this is a home page</h1>
-  )
-}
-
-function About(){
-  return (
-    <h1>about page this is a</h1>
-  )
-}
-
 export default App
