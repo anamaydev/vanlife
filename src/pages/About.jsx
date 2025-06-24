@@ -1,4 +1,6 @@
+import {Link} from "react-router-dom";
 import stargazing from "../assets/images/star-gazing.png"
+
 const About = () => {
   return (
     <maini className="w-full">
@@ -11,7 +13,7 @@ const About = () => {
         </div>
         <div className="flex flex-col gap-3 items-start p-4 bg-[#FFCC8D]">
           <p className="text-2xl font-bold leading-tight">Your destination is waiting.<br/> Your van is ready.</p>
-          <button className="font-base font-bold leading-normal text-white bg-[#161616] p-2 rounded-[10px]">Explore our vans</button>
+          <Link to="link-button" className="font-base font-bold leading-normal text-white bg-[#161616] p-2 rounded-[10px]">Explore our vans</Link>
         </div>
       </div>
     </maini>
