@@ -1,8 +1,10 @@
 import {BrowserRouter, Routes, Route, Link} from "react-router-dom";
-import AboutPage from "./pages/About"
-import HomePage from "./pages/Home"
+import About from "./pages/About"
+import Home from "./pages/Home"
+import Vans from "./pages/Vans"
 import Header from "./components/Header"
-import Footer from "./components/Footer.jsx";
+import Footer from "./components/Footer";
+
 
 function App() {
   return (
@@ -10,8 +12,9 @@ function App() {
       <div className="min-h-dvh flex flex-col">
         <Header/>
         <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/about" element={<AboutPage />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/vans" element={<Vans />}/>
         </Routes>
         <Footer/>
       </div>

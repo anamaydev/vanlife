@@ -3,7 +3,7 @@ import stargazing from "../assets/images/star-gazing.png"
 
 const About = () => {
   return (
-    <maini className="w-full">
+    <main className="w-full">
       <img src={stargazing} alt="A person sitting on top of van and looking at the stars" className="w-full" />
       <div className="text-[#161616] flex flex-col gap-4 p-3">
         <h2 className="text-[2rem] font-bold leading-tight">Don’t squeeze in a sedan when you could relax in a van.</h2>
@@ -13,10 +13,10 @@ const About = () => {
         </div>
         <div className="flex flex-col gap-3 items-start p-4 bg-[#FFCC8D]">
           <p className="text-2xl font-bold leading-tight">Your destination is waiting.<br/> Your van is ready.</p>
-          <Link to="link-button" className="font-base font-bold leading-normal text-white bg-[#161616] p-2 rounded-[10px]">Explore our vans</Link>
+          <Link to="/vans" className="font-base font-bold leading-normal text-white bg-[#161616] p-2 rounded-[10px]">Explore our vans</Link>
         </div>
       </div>
-    </maini>
+    </main>
   )
 }
 export default About

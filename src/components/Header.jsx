@@ -10,7 +10,7 @@ const Header = () => {
         </Link>
         <div className="flex gap-3">
           <Link to="/about" className="page-link" >About</Link>
-          <p className="page-link cursor-pointer" >Vans</p>
+          <Link to="/vans" className="page-link " >Vans</Link>
         </div>
       </nav>
     </header>
