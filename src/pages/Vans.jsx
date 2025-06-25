@@ -1,4 +1,5 @@
 import {useEffect, useState} from "react";
+import {Link} from "react-router-dom";
 import Chip from "../components/Chip"
 
 const Vans = () => {
@@ -29,7 +30,9 @@ const Vans = () => {
         {
           vansData &&
           vansData.map(van => (
-            <Vans.Card  key={van.name} imgUrl={van.imageUrl} name={van.name} price={van.price} type={van.type}/>
+            <Link to={`/vans/${van.id}`} key={van.name} >
+              <Vans.Card imgUrl={van.imageUrl} name={van.name} price={van.price} type={van.type}/>
+            </Link>
           ))
         }
       </div>
