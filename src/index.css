@@ -22,5 +22,9 @@
 }
 
 @utility page-link{
-  @apply border-b-2 border-b-transparent hover:border-b-[#4D4D4D] active:border-b-[#4D4D4D] transition-all duration-600;
+  @apply hover:scale-110  transition-all duration-300;
+}
+
+@utility active-page-link{
+  @apply border-b-2 border-b-[#4D4D4D] transition-all duration-300;
 }
