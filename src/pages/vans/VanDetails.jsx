@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react'
 import {useParams, Link} from "react-router-dom";
-import Chip from "../components/Chip"
-import backArrow from "../assets/images/back-arrow.svg"
+import Chip from "../../components/Chip.jsx"
+import backArrow from "../../assets/images/back-arrow.svg"
 
 const VanDetails = () => {
   const params = useParams();

@@ -9,6 +9,7 @@ const Header = () => {
           <img src={logo} alt="Vanlife logo" className="h-3" />
         </Link>
         <div className="flex gap-3">
+          <Link to="/host" className="page-link">Host</Link>
           <Link to="/about" className="page-link" >About</Link>
           <Link to="/vans" className="page-link " >Vans</Link>
         </div>

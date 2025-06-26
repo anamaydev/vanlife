@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
-import Chip from "../components/Chip"
+import Chip from "../../components/Chip.jsx"
 
 const Vans = () => {
   const [vansData, setVansData] = useState(null);
