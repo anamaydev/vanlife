@@ -22,7 +22,7 @@
 }
 
 @utility page-link{
-  @apply hover:scale-110  transition-all duration-300;
+  @apply border-b-2 border-b-transparent hover:scale-110  transition-all duration-300;
 }
 
 @utility active-page-link{

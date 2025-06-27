@@ -1,5 +1,5 @@
 import {useState, useEffect} from "react";
-import {Link, useParams} from "react-router-dom";
+import {Link, NavLink, useParams, Outlet} from "react-router-dom";
 import Chip from "../../components/Chip";
 import backArrow from '../../assets/images/back-arrow.svg';
 
@@ -25,6 +25,10 @@ const HostVansDetails = () => {
     }
   }, [vanData]);
 
+  function checkActivePage(isActive) {
+    return (isActive ? "page-link border-b-2 active-page-link": "page-link")
+  }
+
   return (
     <div className="flex flex-col gap-3 pb-6">
       {
@@ -43,6 +47,7 @@ const HostVansDetails = () => {
               <div className="h-20 w-20">
                 <img src={vanData.imageUrl} alt="" className="h-full w-full object-cover rounded-[5px]"/>
               </div>
+
               <div className="flex flex-col items-start">
                 <Chip type={vanData.type}>{vanData.type[0].toUpperCase() + vanData.type.slice(1)}</Chip>
                 <p className="font-bold text-[26px]">{vanData.name}</p>
@@ -53,6 +58,13 @@ const HostVansDetails = () => {
               </div>
             </div>
 
+            {/* Links */}
+            <nav className="flex justify-start items-center gap-3 text-[#4D4D4D] pt-4 pb-3">
+              <NavLink to="." end className={({isActive})=>checkActivePage(isActive)}>Details</NavLink>
+              <NavLink to="pricing" className={({isActive})=>checkActivePage(isActive)}>Pricing</NavLink>
+              <NavLink to="photos" className={({isActive})=>checkActivePage(isActive)}>Photos</NavLink>
+            </nav>
+            <Outlet/>
           </div>
         </>
       }
