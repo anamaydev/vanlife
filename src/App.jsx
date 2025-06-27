@@ -5,6 +5,8 @@ import Vans from "./pages/vans/Vans.jsx";
 import VanDetails from "./pages/vans/VanDetails.jsx";
 import Dashboard from "./pages/host/Dashboard";
 import Income from "./pages/host/Income";
+import HostVans from "./pages/host/HostVans";
+import HostVansDetails from "./pages/host/HostVansDetails";
 import Reviews from "./pages/host/Reviews";
 import Layout from "./components/Layout";
 import HostLayout from "./components/HostLayout.jsx";
@@ -24,6 +26,10 @@ function App() {
             <Route path="host" element={<HostLayout/>}>
               <Route index element={<Dashboard/>} />
               <Route path="income" element={<Income/>} />
+              <Route path="vans">
+                <Route index element={<HostVans/>}/>
+                <Route path=":id" element={<HostVansDetails/>}/>
+              </Route>
               <Route path="reviews" element={<Reviews />} />
             </Route>
           </Route>
