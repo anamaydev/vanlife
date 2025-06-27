@@ -26,7 +26,7 @@ const VanDetails = () => {
     <main className="px-3 pt-4 pb-6 flex flex-col gap-4 text-[#161616]">
       <div className="flex gap-1">
         <img src={backArrow} alt=""/>
-        <Link to="/vans" className="text-base font-medium leading-normal underline underline-offset-2">Back to all vans</Link>
+        <Link to=".." relative="path" className="text-base font-medium leading-normal underline underline-offset-2">Back to all vans</Link>
       </div>
       {
         vanData &&
@@ -46,7 +46,7 @@ const VanDetails = () => {
             </div>
             <p className="text-base font-medium">{vanData.description}</p>
             {/* change link later */}
-            <Link to="/rent" className="w-full flex justify-center items-center py-2 rounded-sm text-white text-base font-bold bg-[#FF8C38]">Rent this van</Link>
+            <Link to="rent" className="w-full flex justify-center items-center py-2 rounded-sm text-white text-base font-bold bg-[#FF8C38]">Rent this van</Link>
           </div>
 
         </div>

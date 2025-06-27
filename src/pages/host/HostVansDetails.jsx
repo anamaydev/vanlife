@@ -33,7 +33,7 @@ const HostVansDetails = () => {
           {/* back button */}
           <div className="flex gap-1">
             <img src={backArrow} alt=""/>
-            <Link to="/host/vans" className="text-base font-medium leading-normal underline underline-offset-2">Back to all vans</Link>
+            <Link to=".." className="text-base font-medium leading-normal underline underline-offset-2">Back to all vans</Link>
           </div>
 
           {/* van card */}

@@ -12,9 +12,9 @@ const Header = () => {
           <img src={logo} alt="Vanlife logo" className="h-3" />
         </Link>
         <div className="flex gap-3">
-          <NavLink to="/host" className={({isActive}) => checkActivePage(isActive)}>Host</NavLink>
-          <NavLink to="/about" className={({isActive}) => checkActivePage(isActive)}>About</NavLink>
-          <NavLink to="/vans" className={({isActive}) => checkActivePage(isActive)}>Vans</NavLink>
+          <NavLink to="host" className={({isActive}) => checkActivePage(isActive)}>Host</NavLink>
+          <NavLink to="about" className={({isActive}) => checkActivePage(isActive)}>About</NavLink>
+          <NavLink to="vans" className={({isActive}) => checkActivePage(isActive)}>Vans</NavLink>
         </div>
       </nav>
     </header>
