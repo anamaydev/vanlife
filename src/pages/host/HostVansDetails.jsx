@@ -13,7 +13,7 @@ const HostVansDetails = () => {
     async function fetchVanData() {
       const response = await fetch(`/api/host/vans/${params.id}`);
       const data = await response.json();
-      setVanData(data.vans[0]);
+      setVanData(data.vans);
     }
 
     fetchVanData();
@@ -22,7 +22,6 @@ const HostVansDetails = () => {
   useEffect(() => {
     if (vanData) {
       console.log(vanData);
-      console.log("vanData.description", vanData.description);
     }
   }, [vanData]);
 
