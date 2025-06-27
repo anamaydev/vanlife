@@ -64,7 +64,7 @@ const HostVansDetails = () => {
               <NavLink to="pricing" className={({isActive})=>checkActivePage(isActive)}>Pricing</NavLink>
               <NavLink to="photos" className={({isActive})=>checkActivePage(isActive)}>Photos</NavLink>
             </nav>
-            <Outlet/>
+            <Outlet context={{vanData}}/>
           </div>
         </>
       }
