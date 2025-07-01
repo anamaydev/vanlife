@@ -28,7 +28,7 @@ const VanDetails = () => {
     <main className="px-3 pt-4 pb-6 flex flex-col gap-4 text-[#161616]">
       <div className="flex gap-1">
         <img src={backArrow} alt=""/>
-        <Link to={location.state ? `..?${location.state.search}` : ".."} relative="path" className="text-base font-medium leading-normal underline underline-offset-2">Back to all vans</Link>
+        <Link to={`..?${location.state?.search ?? ""}`} relative="path" className="text-base font-medium leading-normal underline underline-offset-2">Back to all vans</Link>
       </div>
       {
         vanData &&
