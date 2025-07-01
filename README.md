@@ -45,3 +45,45 @@
 ```jsx
 <Link to="..">Back</Link>
 ```
+
+### Search Params
+- import
+  ```jsx 
+  import {useParams, useSearchParams} from 'react-router-dom'
+  ```
+- initialise
+  ```jsx
+  const [searchParams, setSearchParams] = useSearchParams();
+  const filteredParams = searchParams.get("type");
+  ```
+- use / set
+  - string initialization
+    ```jsx
+    <Link to={"?type=luxury"}>{data.type}</Link>
+    ```
+  - object / record initialization
+    ```jsx
+    <button onClick={() => {setSearchParams({type: `${data.type}`})}}>{data.type}</button>
+    
+    // to go back to current page (no filters)
+    <button onClick={() => setSearchParams({})}>Clear</button>
+    ```
+
+> 🚨 Warning: if we hardcode the params like `to={"?type=luxury"}` then it will replace the whole URL. To avoid this we need to merge the other params with the new one and form new URL
+- URLSearchParams() can be used to tackle this problem.
+- here `to` is not an event handler so the function will run only once at the page load.
+  ```jsx
+  function getNewSearchParams(key, value){
+    const newSearchParams = URLSearchParams(searchParams);
+    if(value === null){
+      newSearchParams.delete(key);
+    }else{
+      newSearchParams.set(key, value);
+    }
+  
+    return `?${newSearchParams.toString()}`;
+  }
+  ```
+  ```jsx
+     <Link to={getNewSearchParams("type", data.type)}>{data.type}</Link>
+  ```
