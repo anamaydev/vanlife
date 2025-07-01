@@ -1,12 +1,14 @@
 import {useState, useEffect} from 'react'
-import {useParams, Link} from "react-router-dom";
+import {useParams, Link, useLocation} from "react-router-dom";
 import Chip from "../../components/Chip.jsx"
 import backArrow from "../../assets/images/back-arrow.svg"
 
 const VanDetails = () => {
   const params = useParams();
+  const location = useLocation();
   const [vanData, setVanData] = useState(null);
   console.log(params);
+  console.log(location);
 
   useEffect(() => {
     async function getVanDetails() {
@@ -16,17 +18,17 @@ const VanDetails = () => {
     }
     getVanDetails();
   }, [params.id])
-
-  useEffect(() => {
-    if (!vanData) return
-    console.log(vanData);
-  }, [vanData])
+  //
+  // useEffect(() => {
+  //   if (!vanData) return
+  //   console.log(vanData);
+  // }, [vanData])
 
   return (
     <main className="px-3 pt-4 pb-6 flex flex-col gap-4 text-[#161616]">
       <div className="flex gap-1">
         <img src={backArrow} alt=""/>
-        <Link to=".." relative="path" className="text-base font-medium leading-normal underline underline-offset-2">Back to all vans</Link>
+        <Link to={location.state ? `..?${location.state.search}` : ".."} relative="path" className="text-base font-medium leading-normal underline underline-offset-2">Back to all vans</Link>
       </div>
       {
         vanData &&

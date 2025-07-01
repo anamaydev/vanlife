@@ -9,10 +9,11 @@ const Vans = () => {
 
   const typeFilter = searchParams.get("type");
   const filteredVansData = vansData ? typeFilter ? vansData.filter(van => van.type === typeFilter) : vansData : [];
-  console.log(typeFilter);
+  console.log("typeFilter: ", typeFilter);
+  console.log("searchParams: ", searchParams.toString());
 
   const uniqueType = vansData ? [...new Set(vansData.map(van => van.type))] : null;
-  console.log("uniqueType", uniqueType);
+  // console.log("uniqueType", uniqueType);
 
 
   useEffect(() => {
@@ -25,9 +26,9 @@ const Vans = () => {
     getVansData();
   }, [])
 
-  useEffect(() => {
-    console.log(vansData);
-  }, [vansData]);
+  // useEffect(() => {
+  //   console.log(vansData);
+  // }, [vansData]);
 
   function handleSearchParams(key, value) {
     setSearchParams(prevSearchParams => {
@@ -74,7 +75,7 @@ const Vans = () => {
         {
           filteredVansData &&
           filteredVansData.map(van => (
-            <Link to={van.id} key={van.name} >
+            <Link to={van.id} state={{search: searchParams.toString()}} key={van.name} >
               <Vans.Card imgUrl={van.imageUrl} name={van.name} price={van.price} type={van.type}/>
             </Link>
           ))
