@@ -74,7 +74,7 @@ const Vans = () => {
         {
           filteredVansData &&
           filteredVansData.map(van => (
-            <Link to={`/vans/${van.id}`} key={van.name} >
+            <Link to={van.id} key={van.name} >
               <Vans.Card imgUrl={van.imageUrl} name={van.name} price={van.price} type={van.type}/>
             </Link>
           ))

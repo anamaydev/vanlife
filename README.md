@@ -87,3 +87,20 @@
   ```jsx
      <Link to={getNewSearchParams("type", data.type)}>{data.type}</Link>
   ```
+- another method (using button tag)
+  ```jsx
+  function handleSearchParams(key, value) {
+    setSearchParams(prevSearchParams => {
+      const newSearchParams = prevSearchParams;
+      if(value === null) newSearchParams.delete(key);
+      else newSearchParams.set(key, value);
+      return newSearchParams;
+    });
+  }
+  ```
+  ```jsx
+  <button 
+    key={type}
+    onClick={() => handleSearchParams("type", type)}
+  >{type[0].toUpperCase() + type.slice(1)}</button>)
+  ```

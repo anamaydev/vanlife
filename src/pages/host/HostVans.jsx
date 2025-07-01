@@ -31,7 +31,7 @@ const HostVans = () => {
 
 HostVans.Card = function HostVansCard({id, imgUrl, name, price}){
   return(
-    <Link to={`${id}`} className="flex gap-2.5 py-2.5 px-3 bg-white rounded-md hover:scale-105 transition-transform duration-400">
+    <Link to={id} className="flex gap-2.5 py-2.5 px-3 bg-white rounded-md hover:scale-105 transition-transform duration-400">
       <div className="h-8 w-8">
         <img src={imgUrl} alt="Van image" className="rounded-[5px] h-full w-full object-cover" />
       </div>
