@@ -118,3 +118,9 @@
   
   <Link to={`..?${location.state?.search ?? ""}`} relative="path">Back to all vans</Link>
   ```
+  
+# splat route / catch all routes (404 page)
+- we can put this catch all routes wherever we want in the layout.
+```jsx
+<Route path="*" element={NotFound}/>
+```

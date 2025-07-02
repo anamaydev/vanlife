@@ -13,6 +13,7 @@ import HostVansDetails from "./pages/host/HostVansDetails";
 import Reviews from "./pages/host/Reviews";
 import Layout from "./components/Layout";
 import HostLayout from "./components/HostLayout.jsx";
+import NotFound from "./pages/NotFound.jsx";
 
 
 function App() {
@@ -39,6 +40,7 @@ function App() {
               </Route>
               <Route path="reviews" element={<Reviews />} />
             </Route>
+            <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>
       </div>
