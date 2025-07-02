@@ -19,7 +19,7 @@ const Vans = () => {
   useEffect(() => {
     async function getVansData(){
       const data = await getVans();
-      setVansData(data.vans);
+      setVansData(data);
     }
 
     getVansData();
