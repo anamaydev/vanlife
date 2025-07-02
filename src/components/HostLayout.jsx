@@ -7,7 +7,7 @@ const HostLayout = () => {
   }
 
   return (
-    <main className="flex-grow px-3">
+    <main className="flex-grow flex flex-col px-3">
       <nav className="flex gap-3 py-4">
         <NavLink to="." end className={({isActive})=>checkActivePage(isActive)}>Dashboard</NavLink>
         <NavLink to="income" className={({isActive})=>checkActivePage(isActive)}>Income</NavLink>

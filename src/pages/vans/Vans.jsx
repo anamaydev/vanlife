@@ -7,6 +7,7 @@ import Chip from "../../components/Chip.jsx"
 const Vans = () => {
   const [vansData, setVansData] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams();
+  const [loading, setLoading] = useState(false);
 
   const typeFilter = searchParams.get("type");
   const filteredVansData = vansData ? typeFilter ? vansData.filter(van => van.type === typeFilter) : vansData : [];
@@ -18,10 +19,11 @@ const Vans = () => {
 
   useEffect(() => {
     async function getVansData(){
+      setLoading(true);
       const data = await getVans();
       setVansData(data);
+      setLoading(false);
     }
-
     getVansData();
   }, [])
 
@@ -32,6 +34,10 @@ const Vans = () => {
       else newSearchParams.set(key, value);
       return newSearchParams;
     });
+  }
+
+  if(loading){
+    return <main className="flex-grow flex justify-center items-center px-3"><h1 className="text-2xl">Loading...</h1></main>
   }
 
   return (

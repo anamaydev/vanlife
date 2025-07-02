@@ -1,5 +1,6 @@
 import {useState, useEffect} from 'react'
 import {useParams, Link, useLocation} from "react-router-dom";
+import {getVan} from "../../api";
 import Chip from "../../components/Chip.jsx"
 import backArrow from "../../assets/images/back-arrow.svg"
 
@@ -7,22 +8,24 @@ const VanDetails = () => {
   const params = useParams();
   const location = useLocation();
   const [vanData, setVanData] = useState(null);
+  const [loading, setLoading] = useState(false);
   console.log(params);
   console.log(location);
 
   useEffect(() => {
     async function getVanDetails() {
-      const response = await fetch(`/api/vans/${params.id}`);
-      const data = await response.json();
-      setVanData(data.vans);
+      setLoading(true);
+      const data = await getVan(params.id);
+      setVanData(data);
+      setLoading(false);
     }
+
     getVanDetails();
   }, [params.id])
-  //
-  // useEffect(() => {
-  //   if (!vanData) return
-  //   console.log(vanData);
-  // }, [vanData])
+
+  if(loading){
+    return <div className="flex-grow flex justify-center items-center px-3"><h1 className="text-2xl">Loading...</h1></div>
+  }
 
   return (
     <main className="px-3 pt-4 pb-6 flex flex-col gap-4 text-[#161616]">

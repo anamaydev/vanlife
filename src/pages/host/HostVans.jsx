@@ -1,22 +1,25 @@
 import {useState, useEffect} from "react";
 import {Link} from "react-router-dom";
+import {getHostVans} from "../../api";
 
 const HostVans = () => {
   const [vansData, setVansData] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     async function fetchVansData() {
-      const response = await fetch("/api/host/vans");
-      const data = await response.json();
-      setVansData(data.vans);
+      setLoading(true);
+      const data = await getHostVans();
+      setVansData(data);
+      setLoading(false);
     }
 
     fetchVansData();
   },[])
 
-  useEffect(() => {
-    console.log(vansData);
-  }, [vansData]);
+  if(loading){
+    return <div className="flex-grow flex justify-center items-center px-3"><h1 className="text-2xl">Loading...</h1></div>
+  }
 
   return (
     <div className="flex-grow flex flex-col gap-3">

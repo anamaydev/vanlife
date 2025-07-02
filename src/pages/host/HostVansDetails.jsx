@@ -1,32 +1,33 @@
 import {useState, useEffect} from "react";
 import {Link, NavLink, useParams, Outlet} from "react-router-dom";
+import {getHostVan} from "../../api"
 import Chip from "../../components/Chip";
 import backArrow from '../../assets/images/back-arrow.svg';
 
 const HostVansDetails = () => {
   const params = useParams();
+  const [loading, setLoading] = useState(true);
   console.log(params);
 
   const [vanData, setVanData] = useState(null);
 
   useEffect(() => {
     async function fetchVanData() {
-      const response = await fetch(`/api/host/vans/${params.id}`);
-      const data = await response.json();
-      setVanData(data.vans);
+      setLoading(true);
+      const data = await getHostVan(params.id);
+      setVanData(data);
+      setLoading(false);
     }
 
     fetchVanData();
   }, [params.id]);
 
-  useEffect(() => {
-    if (vanData) {
-      console.log(vanData);
-    }
-  }, [vanData]);
-
   function checkActivePage(isActive) {
     return (isActive ? "page-link border-b-2 active-page-link": "page-link")
+  }
+
+  if(loading){
+    return <div className="flex-grow flex justify-center items-center px-3"><h1 className="text-2xl">Loading...</h1></div>
   }
 
   return (
