@@ -1,6 +1,8 @@
 import {BrowserRouter, Routes, Route, Link} from "react-router-dom";
 import About from "./pages/About";
 import Home from "./pages/Home";
+import Login from "./pages/Login";
+import NotFound from "./pages/NotFound";
 import Vans from "./pages/vans/Vans.jsx";
 import VanDetails from "./pages/vans/VanDetails.jsx";
 import Dashboard from "./pages/host/Dashboard";
@@ -12,8 +14,7 @@ import HostVansPhotos from "./pages/host/HostVansPhotos";
 import HostVansDetails from "./pages/host/HostVansDetails";
 import Reviews from "./pages/host/Reviews";
 import Layout from "./components/Layout";
-import HostLayout from "./components/HostLayout.jsx";
-import NotFound from "./pages/NotFound.jsx";
+import HostLayout from "./components/HostLayout";
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
             <Route path="about" element={<About />} />
             <Route path="vans" element={<Vans />}/>
             <Route path="vans/:id" element={<VanDetails />} />
+            <Route path="login" element={<Login />} />
 
             <Route path="host" element={<HostLayout/>}>
               <Route index element={<Dashboard/>} />
