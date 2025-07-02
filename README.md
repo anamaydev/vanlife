@@ -104,3 +104,17 @@
     onClick={() => handleSearchParams("type", type)}
   >{type[0].toUpperCase() + type.slice(1)}</button>)
   ```
+  
+### Link State
+- browser can store some sort of link state, to use we can pass previous link/params as props
+  ```jsx
+  <Link to={van.id} state={{search: searchParams.toString()}}></Link>
+  ```
+- receive:
+  ```jsx
+  import {useParams, Link, useLocation} from "react-router-dom";
+
+  const location = useLocation();
+  
+  <Link to={`..?${location.state?.search ?? ""}`} relative="path">Back to all vans</Link>
+  ```
