@@ -1,4 +1,4 @@
-import { createServer, Model } from "miragejs"
+import { createServer, Model, Response } from "miragejs"
 
 
 createServer({
@@ -21,24 +21,35 @@ createServer({
     // this.timing = 4000
 
     this.get("/vans", (schema, request) => {
-      // return new Response(400, {}, {error: "Error fetching data"})
       return schema.vans.all()
+
+      // sending error to check sad path
+      // return new Response(400, {}, {error: "Error fetching data"})
     })
 
     this.get("/vans/:id", (schema, request) => {
       const id = request.params.id
       return schema.vans.find(id)
+
+      // sending error to check sad path
+      // return new Response(400, {}, {error: "Error fetching data"})
     })
 
     this.get("/host/vans", (schema, request) => {
       // Hard-code the hostId for now
       return schema.vans.where({ hostId: "123" })
+
+      // sending error to check sad path
+      // return new Response(400, {}, {error: "Error fetching data"})
     })
 
     this.get("/host/vans/:id", (schema, request) => {
       // Hard-code the hostId for now
       const id = request.params.id
       return schema.vans.findBy({ id, hostId: "123" })
+
+      // sending error to check sad path
+      // return new Response(400, {}, {error: "Error fetching data"})
     })
   }
 })

@@ -8,11 +8,12 @@ const Vans = () => {
   const [vansData, setVansData] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams();
   const [loading, setLoading] = useState(false);
+  const [fetchingError, setFetchingError] = useState(null);
 
   const typeFilter = searchParams.get("type");
   const filteredVansData = vansData ? typeFilter ? vansData.filter(van => van.type === typeFilter) : vansData : [];
-  console.log("typeFilter: ", typeFilter);
-  console.log("searchParams: ", searchParams.toString());
+  // console.log("typeFilter: ", typeFilter);
+  // console.log("searchParams: ", searchParams.toString());
 
   const uniqueType = vansData ? [...new Set(vansData.map(van => van.type))] : null;
   // console.log("uniqueType", uniqueType);
@@ -20,12 +21,23 @@ const Vans = () => {
   useEffect(() => {
     async function getVansData(){
       setLoading(true);
-      const data = await getVans();
-      setVansData(data);
-      setLoading(false);
+      try{
+        const data = await getVans();
+        setVansData(data);
+      }catch(error){
+        console.log("Error: ");
+        console.log(error);
+        setFetchingError(error);
+      }finally {
+        setLoading(false);
+      }
     }
     getVansData();
   }, [])
+
+  useEffect(() => {
+    console.log(vansData);
+  }, [vansData]);
 
   function handleSearchParams(key, value) {
     setSearchParams(prevSearchParams => {
@@ -34,6 +46,10 @@ const Vans = () => {
       else newSearchParams.set(key, value);
       return newSearchParams;
     });
+  }
+
+  if(fetchingError){
+    return <main className="flex-grow flex justify-center items-center px-3"><h1 className="text-2xl">{fetchingError.message}</h1></main>
   }
 
   if(loading){

@@ -7,6 +7,7 @@ import backArrow from '../../assets/images/back-arrow.svg';
 const HostVansDetails = () => {
   const params = useParams();
   const [loading, setLoading] = useState(true);
+  const[fetchingError, setFetchingError] = useState(null);
   console.log(params);
 
   const [vanData, setVanData] = useState(null);
@@ -14,9 +15,14 @@ const HostVansDetails = () => {
   useEffect(() => {
     async function fetchVanData() {
       setLoading(true);
-      const data = await getHostVan(params.id);
-      setVanData(data);
-      setLoading(false);
+      try{
+        const data = await getHostVan(params.id);
+        setVanData(data);
+      }catch(error){
+        setFetchingError(error);
+      }finally {
+        setLoading(false);
+      }
     }
 
     fetchVanData();
@@ -24,6 +30,10 @@ const HostVansDetails = () => {
 
   function checkActivePage(isActive) {
     return (isActive ? "page-link border-b-2 active-page-link": "page-link")
+  }
+
+  if(fetchingError){
+    return <main className="flex-grow flex justify-center items-center px-3"><h1 className="text-2xl">{fetchingError.message}</h1></main>
   }
 
   if(loading){

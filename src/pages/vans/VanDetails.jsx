@@ -9,19 +9,31 @@ const VanDetails = () => {
   const location = useLocation();
   const [vanData, setVanData] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [fetchingError, setFetchingError] = useState(null);
   const prevTypeParam = new URLSearchParams(location.state.search);
   console.log("prevSearchParam", prevTypeParam.get("type"));
 
   useEffect(() => {
     async function getVanDetails() {
       setLoading(true);
-      const data = await getVan(params.id);
-      setVanData(data);
-      setLoading(false);
+      try{
+        const data = await getVan(params.id);
+        setVanData(data);
+      }catch(error){
+        setFetchingError(error);
+        console.log(error)
+        console.log(error.message);
+      }finally{
+        setLoading(false);
+      }
     }
 
     getVanDetails();
   }, [params.id])
+
+  if(fetchingError){
+    return <main className="flex-grow flex justify-center items-center px-3"><h1 className="text-2xl">{fetchingError.message}</h1></main>
+  }
 
   if(loading){
     return <div className="flex-grow flex justify-center items-center px-3"><h1 className="text-2xl">Loading...</h1></div>

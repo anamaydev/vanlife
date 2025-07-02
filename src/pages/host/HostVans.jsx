@@ -5,17 +5,27 @@ import {getHostVans} from "../../api";
 const HostVans = () => {
   const [vansData, setVansData] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [fetchingError, setFetchingError] = useState(null);
 
   useEffect(() => {
     async function fetchVansData() {
       setLoading(true);
-      const data = await getHostVans();
-      setVansData(data);
-      setLoading(false);
+      try{
+        const data = await getHostVans();
+        setVansData(data);
+      }catch(error){
+        setFetchingError(error);
+      }finally{
+        setLoading(false);
+      }
     }
 
     fetchVansData();
   },[])
+
+  if(fetchingError){
+    return <main className="flex-grow flex justify-center items-center px-3"><h1 className="text-2xl">{fetchingError.message}</h1></main>
+  }
 
   if(loading){
     return <div className="flex-grow flex justify-center items-center px-3"><h1 className="text-2xl">Loading...</h1></div>
