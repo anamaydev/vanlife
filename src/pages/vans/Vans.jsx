@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 import {Link, useSearchParams} from "react-router-dom";
+import {getVans} from "../../api";
 import clsx from "clsx";
 import Chip from "../../components/Chip.jsx"
 
@@ -15,20 +16,14 @@ const Vans = () => {
   const uniqueType = vansData ? [...new Set(vansData.map(van => van.type))] : null;
   // console.log("uniqueType", uniqueType);
 
-
   useEffect(() => {
     async function getVansData(){
-      const response = await fetch("/api/vans");
-      const data = await response.json();
+      const data = await getVans();
       setVansData(data.vans);
     }
 
     getVansData();
   }, [])
-
-  // useEffect(() => {
-  //   console.log(vansData);
-  // }, [vansData]);
 
   function handleSearchParams(key, value) {
     setSearchParams(prevSearchParams => {
