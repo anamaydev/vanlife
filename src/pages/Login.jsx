@@ -1,7 +1,10 @@
 import {useEffect, useState} from "react";
+import {useLocation} from "react-router-dom";
 
 const Login = () => {
   const [userData, setUserData] = useState({email: "", password: ""});
+  const location = useLocation();
+  console.log(location);
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -20,7 +23,9 @@ const Login = () => {
 
   return (
     <main className="flex flex-col justify-center items-center flex-grow px-3">
-      <h2 className="text-[2rem] font-bold mb-4">Sign in to you account</h2>
+      <h2 className="text-[2rem] font-bold mb-4">
+        {location.state?.message ?? "Sign in to your account"}
+      </h2>
       <form action="/" className="flex flex-col justify-center items-center w-full max-w-60">
         <div className="w-full">
           <label htmlFor="email"></label>
