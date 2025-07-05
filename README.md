@@ -124,3 +124,14 @@
 ```jsx
 <Route path="*" element={NotFound}/>
 ```
+
+### Protected Routes
+- Purpose:
+  1. Stop fetching sensitive data
+  2. Only logged-in user can read the data
+- Approach:
+  - Stop data fetching by redirecting user who is not logged in to different page
+  - (If the page is not rendered, then the data will not be fetched either)
+
+### Navigate
+- if it is ever rendered, then it will automatically forward the user to a specific link.
