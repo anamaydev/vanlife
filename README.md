@@ -134,4 +134,49 @@
   - (If the page is not rendered, then the data will not be fetched either)
 
 ### Navigate
-- if it is ever rendered, then it will automatically forward the user to a specific link.
+- If it is ever rendered, then it will automatically forward the user to a specific link.
+- When user goes from `/host` to `/login` and after logging in press the back button then it will go back to the `/login` page
+  - This happens coz of `History Stack`
+  - `navigate("/host",{ replace: true})` ==> Navigate to `/host`, and replace the current entry (`/login`) in the browser's `history stack`.
+  ![history-stack-1.png](screenshots/history-stack-1.png)
+  - `<Navigate to="/login" replace />` ==> Don’t leave the failed attempt (`/host/dashboard`) in the history stack. Replace it with `/login`.
+  - Suppose user clicks on a link sent by friend, and it is protected link e.g. `/host/vans` then user will need to log in first but when user logs in then it will send them to default `/host`
+  - to remember from which link the user came from, we can use useLocation to get the link and pass it in a state object to the component.
+  - Pass the link using useLocation();
+  ```jsx
+  // AuthRequired.jsx
+  import {useLocation} from "react-router-dom";
+  
+  export default function AuthRequired(){
+    const location = useLocation();
+    if(!isLoggedIn){
+      return <Navigate to="/login" replace state={{message: "You must log in first", from: location}} />;
+    }
+  }
+  ```
+  - Receive the location
+  ```jsx
+  import {useLocation} from "react-router-dom";
+  
+  export default function Login(){
+    const location = useLocation();
+  
+    // if the from pathname exist in location state then assign it to from variable or default it to "/host"
+    const from = location?.state?.from?.pathname ?? "/host";
+  
+    async function handleSubmit(event) {
+      event.preventDefault();
+      try {
+        const data = await loginUser(userData);
+  
+        // set it in navigate
+        navigate(from, {replace: true});
+      }catch(error) {
+        // code ...
+      }finally {
+        // code ...
+      }
+    }
+  }
+  ```
+  
