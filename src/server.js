@@ -22,6 +22,9 @@ createServer({
     this.logging = false
     // this.timing = 4000
 
+    // allows api calls to passthrough and Mirage won't interfere with them
+    this.passthrough("https://firestore.googleapis.com/**")
+
     this.get("/vans", (schema, request) => {
       return schema.vans.all()
 
